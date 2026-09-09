@@ -1,9 +1,5 @@
 @import url('./themes.css');
 
-* {
-    box-sizing: border-box;
-}
-
 #right-sidebar {
     height: 100vh;
     width: 400px;
@@ -73,6 +69,8 @@
     flex: 1;
     min-height: 0;
     padding: 15px;
+    gap: 15px;
+    height: 100%;
 }
 
 /* module styling */
@@ -115,13 +113,13 @@
 }
 
 .module {
-    width: 250px;
+    width: 100%;
     flex: 1;
     border-radius: 10px;
     position: relative;
     border: 1px solid grey;
-    max-height: 400px;
-    background-color: var(--color-glass);
+    max-height: 33%;
+    background-color: var(--bg-primary);
 }
 
 .delete-module-btn {
@@ -130,4 +128,9 @@
     right: 5px;
     border: none;
     background-color: inherit;
+}
+
+/* module styling */
+.in-sidebar {
+    max-height: 30%;
 }

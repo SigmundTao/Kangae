@@ -22,23 +22,24 @@ class Module {
         if (openModules.length >= 4) return;
 
         addOpenModule(this.title);
-        const module = document.createElement('div');
-        module.classList.add('module');
+        const moduleEl = document.createElement('div');
+        moduleEl.classList.add('module');
 
         const root = this.element();
-        module.appendChild(root);
+        moduleEl.appendChild(root);
 
         const deleteModuleBtn = document.createElement('button');
         deleteModuleBtn.classList.add('delete-module-btn');
         deleteModuleBtn.addEventListener('click', () => {
             if (this.id === 'timer-module') destroySidebarPomodoroTimer();
-            module.remove();
+            moduleEl.remove();
             removeOpenModule(this.title);
         });
         deleteModuleBtn.textContent = 'x';
 
-        module.appendChild(deleteModuleBtn);
-        sidebarContents.appendChild(module);
+        moduleEl.appendChild(deleteModuleBtn);
+        moduleEl.classList.add('in-sidebar');
+        sidebarContents.appendChild(moduleEl);
     }
     createMenuItem() {
         const menuItem = document.createElement('div');
