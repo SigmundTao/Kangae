@@ -119,6 +119,7 @@
     border-radius: var(--border-radius-small);
     width: 150px;
     background-color: var(--bg-tertiary);
+    position: relative;
 }
 
 .custom-select:hover {
@@ -127,7 +128,13 @@
 
 .custom-dropdown {
     height: auto;
-    width: 100%;
+    width: 150px;
+    position: absolute;
+    top: 28px;
+    left: -1px;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-top: none;
 }
 
 .custom-dropdown-option {
@@ -164,4 +171,53 @@
 
 .dropdown-option-title {
     overflow: hidden;
+}
+
+/* sidebar styling */
+
+.in-sidebar .todo-module {
+    padding: 5px;
+    gap: 5px;
+}
+
+.in-sidebar .list-container {
+    height: 10%;
+}
+
+.in-sidebar .task-input-container {
+    width: 100%;
+    height: 90%;
+    align-items: flex-start;
+    margin: 0px;
+    padding: 5px;
+}
+
+.in-sidebar .task-container {
+    width: 100%;
+}
+
+.in-sidebar .persistent-todo-input {
+    width: 100%;
+    height: 30px;
+    min-height: 30px;
+}
+
+.in-sidebar .task-card {
+    height: 30px;
+    min-height: 30px;
+    font-size: 0.6rem;
+}
+
+.in-sidebar .custom-dropdown {
+    overflow-y: show;
+    top: 22px;
+}
+
+.in-sidebar .displaying-list-option {
+    text-align: center;
+    font-size: 0.7rem;
+}
+
+.in-sidebar .list-input {
+    height: 100%;
 }
