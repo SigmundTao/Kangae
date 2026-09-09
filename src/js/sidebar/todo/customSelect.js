@@ -1,49 +1,46 @@
-import { renderToDos, setCurrentList, currentList } from '../todo.js';
 import { USER, updateUserData } from '../../user.js';
 
-function getContainerEl() {
-    return document.querySelector('.task-container');
-}
-
-function getDropdownEl() {
-    return document.querySelector('.custom-dropdown');
-}
-
-function getSelectedListEl() {
-    return document.querySelector('.displaying-list-option');
-}
-
-function updateSelectedListText() {
-    const element = getSelectedListEl();
-    element.textContent = `用${currentList}`;
-}
-
-export function createSelect(lists) {
+export function createSelect(lists, currentList, onSwitch) {
     const selectEl = document.createElement('div');
     selectEl.classList.add('custom-select');
 
     const displayingList = document.createElement('div');
     displayingList.classList.add('displaying-list-option', 'custom-dropdown-option');
     displayingList.textContent = `用${currentList}`;
+
+    let dropdownEl = null;
+
     displayingList.addEventListener('click', (e) => {
-        e.stopPropagation()
-        const dropdown = getDropdownEl();
-        if(dropdown){
-            dropdown.remove();
+        e.stopPropagation();
+        if (dropdownEl) {
+            dropdownEl.remove();
+            dropdownEl = null;
             return;
         }
-
-        const newDropdown = createDropdown(lists, displayingList);
-        if (newDropdown) selectEl.appendChild(newDropdown);
+        dropdownEl = createDropdown(lists, currentList, (listName) => {
+            currentList = listName;
+            displayingList.textContent = `用${currentList}`;
+            onSwitch(listName);
+            dropdownEl?.remove();
+            dropdownEl = null;
+        });
+        if (dropdownEl) selectEl.appendChild(dropdownEl);
     });
 
     selectEl.appendChild(displayingList);
 
+    // exposed so todo.js can keep this select's label in sync
+    // (e.g. after creating a brand-new list via the '+' input)
+    selectEl.setDisplayedList = (listName) => {
+        currentList = listName;
+        displayingList.textContent = `用${currentList}`;
+    };
+
     return selectEl;
 }
 
-function createDropdown(lists, displayingListEl) {
-    if (lists.length <= 1) return;
+function createDropdown(lists, currentList, onPick) {
+    if (lists.length <= 1) return null;
 
     const dropdown = document.createElement('div');
     dropdown.classList.add('custom-dropdown');
@@ -51,27 +48,17 @@ function createDropdown(lists, displayingListEl) {
     lists.forEach((list) => {
         const listName = list.name;
         if (listName === currentList) return;
-        else {
-            const option = createOption(listName, dropdown);
-            option.addEventListener('click', (e) => {
-                e.stopPropagation();
-                setCurrentList(listName);
-                updateTodoTitle(currentList);
-                updateSelectedListText();
-                renderToDos(getContainerEl());
-                dropdown.remove();
-            });
 
-            dropdown.appendChild(option);
-        }
+        const option = createOption(listName, dropdown);
+        option.addEventListener('click', (e) => {
+            e.stopPropagation();
+            onPick(listName);
+        });
+
+        dropdown.appendChild(option);
     });
 
     return dropdown;
-}
-
-export function updateTodoTitle(currentList) {
-    const element = document.querySelector('.displaying-list-option');
-    element.textContent = `用${currentList}`;
 }
 
 function createOption(listName, dropdown) {
@@ -88,14 +75,16 @@ function createOption(listName, dropdown) {
     deleteBtn.onclick = (e) => {
         e.stopPropagation();
         const listIndex = USER.todo.lists.findIndex((list) => list.name === listName);
-        if (USER.todo.lists.length - 1 <= 0) showToast();
-        else USER.todo.lists.splice(listIndex, 1);
+        if (USER.todo.lists.length - 1 <= 0) {
+            showToast();
+            return;
+        }
+        USER.todo.lists.splice(listIndex, 1);
         updateUserData();
         option.remove();
         if (USER.todo.lists.length <= 1) dropdown.remove();
     };
 
     option.append(title, deleteBtn);
-
     return option;
 }

@@ -1,21 +1,24 @@
 import { USER, updateUserData } from '../user.js';
-import { createSelect, updateTodoTitle } from './todo/customSelect.js';
+import { createSelect } from './todo/customSelect.js';
 
-export function initTodoLists() {
-    setCurrentList(USER.todo.lists[0].name);
+// --- cross-instance data sync ---
+const todoEvents = new EventTarget();
+let instanceCounter = 0;
+
+function broadcastListChanged(listName, sourceId) {
+    todoEvents.dispatchEvent(
+        new CustomEvent('list-changed', { detail: { listName, sourceId } })
+    );
 }
-const toDoBtn = document.getElementById('to-do-btn');
-export let currentList = USER.todo.lists[0].name;
 
-export function setCurrentList(listName) {
-    currentList = listName;
+function findListIndex(listName) {
+    return USER.todo.lists.findIndex((l) => l.name === listName);
 }
 
-export function renderToDos(container) {
-    container.innerHTML = ``;
-    USER.todo.lists[findListIndex(currentList)].tasks.forEach((task) => {
-        container.appendChild(createTaskCard(task));
-    });
+function findTaskIndex(listName, taskTitle) {
+    return USER.todo.lists[findListIndex(listName)].tasks.findIndex(
+        (t) => t.taskName === taskTitle
+    );
 }
 
 function createDefaultInput() {
@@ -24,85 +27,110 @@ function createDefaultInput() {
     return input;
 }
 
-function createTaskCard(taskDataObj) {
-    const task = USER.todo.lists[findListIndex(currentList)].tasks[findTaskIndex(taskDataObj.taskName)];
+function createTask(listName, taskValue) {
+    USER.todo.lists[findListIndex(listName)].tasks.push({
+        taskName: taskValue,
+        completed: false,
+    });
+    updateUserData();
+}
+
+function removeTask(listName, taskName) {
+    USER.todo.lists[findListIndex(listName)].tasks.splice(
+        findTaskIndex(listName, taskName), 1
+    );
+    updateUserData();
+}
+
+function createTaskCard(taskDataObj, listName, sourceId) {
+    const task = USER.todo.lists[findListIndex(listName)]
+        .tasks[findTaskIndex(listName, taskDataObj.taskName)];
+
     const card = document.createElement('li');
     card.classList.add('task-card');
 
     const checkbox = document.createElement('input');
-    checkbox.classList.add('task-checkbox');
     checkbox.type = 'checkbox';
-    if (taskDataObj.completed) checkbox.checked = true;
+    checkbox.classList.add('task-checkbox');
+    checkbox.checked = !!task.completed;
     checkbox.addEventListener('change', () => {
         task.completed = !task.completed;
         updateUserData();
+        broadcastListChanged(listName, sourceId);
     });
 
     const titleCheckboxSpan = document.createElement('span');
     titleCheckboxSpan.classList.add('title-checkbox-span');
 
     const title = document.createElement('input');
-    title.textContent = taskDataObj.taskName;
     title.classList.add('todo-title-input');
     title.value = task.taskName;
-
     title.addEventListener('input', () => {
-        USER.todo.lists[findListIndex(currentList)].tasks[findTaskIndex(taskDataObj.taskName)].taskName = title.value;
-        updateUserData()
-    })
-
-    if (taskDataObj.completed) {
-        checkbox.checked = true;
-    }
+        task.taskName = title.value;
+        updateUserData();
+    });
+    // sync other instances only once editing is done, not per keystroke
+    title.addEventListener('blur', () => broadcastListChanged(listName, sourceId));
 
     const removeTaskBtn = document.createElement('button');
     removeTaskBtn.textContent = 'x';
-    removeTaskBtn.addEventListener('click', () => removeTask(title.textContent));
     removeTaskBtn.classList.add('remove-task-btn');
+    removeTaskBtn.addEventListener('click', () => {
+        removeTask(listName, task.taskName);
+        broadcastListChanged(listName, sourceId);
+        // caller re-renders itself; this only needs to notify others
+    });
 
     titleCheckboxSpan.append(checkbox, title);
     card.append(titleCheckboxSpan, removeTaskBtn);
-
     return card;
 }
 
-function removeTask(taskName) {
-    USER.todo.lists[findListIndex(currentList)].tasks.splice(findTaskIndex(taskName), 1);
-    updateUserData();
-    renderToDos(document.querySelector('.task-container'));
-}
-
-function findTaskIndex(taskTitle) {
-    return USER.todo.lists[findListIndex(currentList)].tasks.findIndex(
-        (task) => task.taskName === taskTitle
-    );
-}
-
-function createTask(container, taskValue) {
-    USER.todo.lists[findListIndex(currentList)].tasks.push({
-        taskName: taskValue,
-        completed: false,
-    });
-    updateUserData();
-    renderToDos(container);
-}
-
 export function createToDoList() {
-   const toDoList = document.createElement('div');
+    const sourceId = ++instanceCounter;
+    let currentList = USER.todo.lists[0].name;
+
+    const toDoList = document.createElement('div');
     toDoList.classList.add('todo-module');
 
     const listsContainer = document.createElement('div');
     listsContainer.classList.add('list-container');
 
+    const taskContainer = document.createElement('div');
+    taskContainer.classList.add('task-container');
+
+    function render() {
+        taskContainer.innerHTML = '';
+        USER.todo.lists[findListIndex(currentList)].tasks.forEach((task) => {
+            taskContainer.appendChild(createTaskCard(task, currentList, sourceId));
+        });
+    }
+
+    function switchList(listName) {
+        currentList = listName;
+        render();
+    }
+
+    todoEvents.addEventListener('list-changed', (e) => {
+        if (e.detail.sourceId === sourceId) return;
+        if (e.detail.listName === currentList) render();
+    });
+
+    const selectEl = createSelect(USER.todo.lists, currentList, switchList);
+
     const addListBtn = document.createElement('button');
     addListBtn.classList.add('add-list-btn');
     addListBtn.textContent = '+';
     addListBtn.addEventListener('click', () => {
-        if (document.querySelector('.list-input')) {
-            document.querySelector('.list-input').focus();
+        if (listsContainer.querySelector('.list-input')) {
+            listsContainer.querySelector('.list-input').focus();
             return;
         }
-        const input = createListInput();
+        const input = createListInput((listName) => {
+            currentList = listName;
+            selectEl.setDisplayedList(listName); // keep the label in sync
+            render();
+        });
         listsContainer.appendChild(input);
         input.focus();
     });
@@ -110,81 +138,38 @@ export function createToDoList() {
     const tasksAndInputContainerEl = document.createElement('div');
     tasksAndInputContainerEl.classList.add('task-input-container');
 
-    const taskContainer = document.createElement('div');
-    taskContainer.classList.add('task-container');
-
     const persistentInput = createDefaultInput();
     persistentInput.placeholder = 'Enter task here...';
     persistentInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && persistentInput.value.length) {
-            createTask(taskContainer, persistentInput.value.trim());
+            createTask(currentList, persistentInput.value.trim());
+            render();
+            broadcastListChanged(currentList, sourceId);
             persistentInput.value = '';
             persistentInput.focus();
         }
     });
 
-    listsContainer.append(createSelect(USER.todo.lists), addListBtn);
-    tasksAndInputContainerEl.append(taskContainer, persistentInput)
+    listsContainer.append(selectEl, addListBtn);
+    tasksAndInputContainerEl.append(taskContainer, persistentInput);
     toDoList.append(listsContainer, tasksAndInputContainerEl);
 
-    renderToDos(taskContainer);
+    render();
     return toDoList;
 }
 
-function createListInput() {
+function createListInput(onCreate) {
     const input = document.createElement('input');
     input.classList.add('list-input');
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             const listName = input.value.trim();
+            if (!listName) return;
             USER.todo.lists.push({ name: listName, tasks: [] });
             updateUserData();
-            setCurrentList(listName);
-            updateTodoTitle(currentList);
-            document.querySelector('.custom-dropdown')?.remove();
-            renderToDos(document.querySelector('.task-container'));
             input.remove();
+            onCreate(listName); // switches ONLY this instance
         }
     });
-
     return input;
-}
-
-function renderSelectOptions(selectEl, selectValue) {
-    selectEl.innerHTML = ``;
-
-    USER.todo.lists.forEach((list) => {
-        selectEl.appendChild(createSelectOption(list.name));
-    });
-
-    selectEl.value = selectValue;
-}
-
-function deleteList(listName) {
-    if (USER.todo.lists.length <= 1) return;
-    USER.todo.lists.splice(findListIndex(listName), 1);
-    updateUserData();
-}
-
-function findListIndex(listName) {
-    return USER.todo.lists.findIndex((target) => target.name === listName);
-}
-
-function createListNameInput(inputContainer, containerEl, renderOptions) {
-    const input = document.createElement('input');
-
-    input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            USER.todo.lists.push({ name: input.value.trim(), tasks: [] });
-            input.remove();
-            updateUserData();
-            currentList = input.value.trim();
-            updateSelectedListEl();
-            renderOptions();
-            renderToDos(containerEl);
-        }
-    });
-
-    inputContainer.appendChild(input);
-    input.focus();
 }

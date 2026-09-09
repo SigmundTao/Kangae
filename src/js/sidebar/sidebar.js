@@ -65,7 +65,7 @@ export const modules = [
         id: 'todo-module',
         title: 'todo',
         image: 'src/assets/todo.svg',
-        element: createToDoList,
+        element: () => createToDoList(true),
     }),
     new Module({
         id: 'timer-module',
