@@ -77,8 +77,8 @@ function createTaskCard(taskDataObj, listName, sourceId) {
     removeTaskBtn.classList.add('remove-task-btn');
     removeTaskBtn.addEventListener('click', () => {
         removeTask(listName, task.taskName);
+        card.remove();
         broadcastListChanged(listName, sourceId);
-        // caller re-renders itself; this only needs to notify others
     });
 
     titleCheckboxSpan.append(checkbox, title);
@@ -128,7 +128,7 @@ export function createToDoList() {
         }
         const input = createListInput((listName) => {
             currentList = listName;
-            selectEl.setDisplayedList(listName); // keep the label in sync
+            selectEl.setDisplayedList(listName);
             render();
         });
         listsContainer.appendChild(input);
