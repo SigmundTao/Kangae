@@ -1,7 +1,7 @@
 import { USER, updateUserData } from '../user.js';
 import { createSelect } from './todo/customSelect.js';
 
-// --- cross-instance data sync ---
+// Multi Instance Handler
 const todoEvents = new EventTarget();
 let instanceCounter = 0;
 
@@ -168,7 +168,7 @@ function createListInput(onCreate) {
             USER.todo.lists.push({ name: listName, tasks: [] });
             updateUserData();
             input.remove();
-            onCreate(listName); // switches ONLY this instance
+            onCreate(listName);
         }
     });
     return input;
