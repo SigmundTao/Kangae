@@ -37,3 +37,18 @@
   cursor: pointer;
   transform: scale(1.05);
 }
+
+/* sidebar */
+.sidebar-timer .timer-label {
+  top: 5px;
+  left: 15px;
+}
+
+.sidebar-timer .timer {
+    font-size: 6rem;
+}
+
+.sidebar-timer .pomodoro-start-stop-btn {
+    height: 40px;
+    width: 75px;
+}

@@ -73,7 +73,10 @@ export function destroySidebarPomodoroTimer() {
 //engine logic
 function mount(timer, key, kind) {
     const root = document.createElement('div');
+
+    if(timer.isInSidebar) root.classList.add('sidebar-timer');
     root.classList.add('timer-module', `timer-module--${kind}`);
+
     if (kind === 'tab') root.id = 'timer-root';
     const paint = renderView(root, timer, key);
     timer.listeners.add(paint);
