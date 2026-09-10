@@ -167,6 +167,7 @@
 
 .displaying-list-option {
     overflow: hidden;
+    padding: 5px;
 }
 
 .dropdown-option-title {
@@ -214,10 +215,15 @@
 }
 
 .in-sidebar .displaying-list-option {
-    text-align: center;
     font-size: 0.7rem;
+    padding: 5px;
+    text-align: center;
 }
 
 .in-sidebar .list-input {
     height: 100%;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

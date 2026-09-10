@@ -12,7 +12,7 @@ const timerSound = new Audio('/src/assets/timer.mp3');
 const tabTimers = new Map();
 let sidebarTimer = null;
 
-function createTimerState(settings) {
+function createTimerState(settings, isInSidebar=false) {
     return {
         settings,
         secondsLeft: settings.pomodoro * 60,
@@ -21,6 +21,7 @@ function createTimerState(settings) {
         pomodoroCounter: 0,
         intervalId: null,
         listeners: new Set(),
+        isInSidebar: isInSidebar,
     };
 }
 
@@ -58,7 +59,7 @@ export function destroyPomodoroTimer(tabId) {
 //Sidebar pomodoro
 export function createSidebarPomodoroModule() {
     if (!sidebarTimer) {
-        sidebarTimer = createTimerState(USER.settings.pomodoroTimer);
+        sidebarTimer = createTimerState(USER.settings.pomodoroTimer, true);
     }
     return mount(sidebarTimer, 'sidebar', 'sidebar');
 }
@@ -115,7 +116,9 @@ function startTimer(timer, key) {
     timer.isGoing = true;
     timer.intervalId = setInterval(() => {
         timer.secondsLeft--;
-        updateTabTitle(timer, key)
+
+        if(!timer.isInSidebar) updateTabTitle(timer, key);
+
         if (timer.secondsLeft <= 0) {
             stopTimer(timer);
             timerSound.play();
