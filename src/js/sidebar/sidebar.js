@@ -20,7 +20,6 @@ class Module {
     createModule() {
         if (openModules.includes(this.title)) return;
         if (openModules.length >= 4) return;
-
         addOpenModule(this.title);
         const moduleEl = document.createElement('div');
         moduleEl.classList.add('module');

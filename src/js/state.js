@@ -24,7 +24,7 @@ export function addOpenModule(moduleTitle) {
 }
 
 export function removeOpenModule(moduleTitle) {
-    openModules.splice(openModules[openModules.findIndex((module) => module === moduleTitle)], 1);
+    openModules.splice(openModules.findIndex(mod => moduleTitle === mod), 1);
 }
 
 export function setCurrentNoteMode(mode) {
