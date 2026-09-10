@@ -39,7 +39,7 @@ export function createState() {
     };
 }
 
-export function createFlashcardModule(existingState = null) {
+export function createFlashcardModule(existingState = null, isInSidebar = false) {
     let state;
     if(!existingState){
         state = createState()
@@ -48,6 +48,7 @@ export function createFlashcardModule(existingState = null) {
     }
     const root = document.createElement('div');
     root.classList.add('flashcard-module');
+    if(isInSidebar) root.classList.add('sidebar-flashcards');
     root.id = 'flashcard-root';
     render(root, state);
     return root;

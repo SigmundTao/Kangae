@@ -255,6 +255,98 @@
 }
 
 /* in sidebar */
-.in-sidebar {
+.sidebar-flashcards .flashcard-module {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
 
+/*
+
+.pack-title {
+    font-size: 0.7rem;
+}
+
+.pack-title:before {
+    content: '束';
+}
+
+.flashcard-display-el {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+
+.add-pack-btn {
+    margin-bottom: 25px;
+    height: 30px;
+}
+
+.pack-list-pack-container {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.flashcard-pack-element {
+    height: 200px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--border-primary);
+    position: relative;
+}
+
+.flashcard-pack-element:hover {
+    cursor: pointer;
+}
+
+.delete-pack-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius-small);
+    aspect-ratio: 1;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    text-align: center;
+}
+
+.btn-input-container {
+    height: 40px;
+    padding: 5px;
+    padding-left: 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    width: auto;
+}
+
+.pack-name-input {
+    background-color: var(--bg-tertiary);
+    color: var(--font-primary);
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--border-primary);
+}
+
+.pack-list-add-btn {
+    height: 30px;
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--border-primary);
+    color: var(--font-primary);
+    background-color: var(--bg-tertiary);
 }

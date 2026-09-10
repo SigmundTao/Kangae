@@ -76,7 +76,7 @@ export const modules = [
         id: 'flashcard-module',
         title: 'flashcards',
         image: 'src/assets/flashcards.svg',
-        element: () => createFlashcardModule(true),
+        element: () => createFlashcardModule(false, true),
     }),
 ];
 
