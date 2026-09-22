@@ -188,6 +188,7 @@
     background-repeat: no-repeat;
 }
 
+/* study view */
 .study-view-return-btn {
     width: 100px;
     height: 30px;
@@ -259,7 +260,7 @@
     height: 100%;
     width: 100%;
     padding: 5px;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 .sidebar-flashcards.flashcard-module::-webkit-scrollbar {
@@ -277,6 +278,15 @@
   align-items: start;
   gap: 5px;
   margin-top: 0;
+  overflow-y: scroll;
+}
+
+.sidebar-flashcards .pack-list-pack-container {
+  height: 90%;
+}
+
+.sidebar-flashcards .pack-list-pack-container::-webkit-scrollbar {
+  display: none;
 }
 
 .sidebar-flashcards .flashcard-pack-element{
@@ -311,92 +321,97 @@
   height: 30px;
   margin-bottom: 5px;
 }
+
+/*in sidebar card view*/
+.sidebar-flashcards .card-view-card-container {
+  flex-direction: column;
+}
 /*
-
-.pack-title {
-    font-size: 0.7rem;
-}
-
-.pack-title:before {
-    content: '束';
-}
-
-.flashcard-display-el {
-    width: 100%;
+.card-view-card-container {
+    margin-top: 25px;
+    overflow-y: scroll;
+    scroll: hidden;
+    max-height: 500px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    height: 80%;
-}
-
-.add-pack-btn {
-    margin-bottom: 25px;
-    height: 30px;
-}
-
-.pack-list-pack-container {
-    height: auto;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 25px;
-    margin-top: 20px;
+    gap: 5px;
+    padding: 25px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--border-radius-small);
+    scrollbar-width: none;
 }
 
-.flashcard-pack-element {
-    height: 200px;
-    width: 150px;
+.card-view-card-container::-webkit-scrollbar {
+    display: none;
+}
+
+.flashcard-card-element {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 310px;
+    position: relative;
+    padding: 5px;
+    gap: 5px;
+}
+
+.card-input {
+    height: 200px;
+    width: 175px;
     background-color: var(--bg-secondary);
     border-radius: var(--border-radius-small);
     border: 1px solid var(--border-primary);
-    position: relative;
+    color: var(--font-primary);
+    padding: var(--padding-medium);
+    font-family: var(--font);
 }
 
-.flashcard-pack-element:hover {
-    cursor: pointer;
-}
-
-.delete-pack-btn {
+.delete-card-btn {
     position: absolute;
-    top: 5px;
-    right: 5px;
-    border: 1px solid var(--border-primary);
+    top: 0px;
+    right: 0px;
     border-radius: var(--border-radius-small);
+    border: 1px solid var(--border-primary);
+}
+
+.card-list-study-btn {
+    top: 15px;
+    right: 15px;
+}
+
+.card-list-back-btn {
+    top: 15px;
+    left: 15px;
+}
+
+.card-view-btn {
+    position: absolute;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    color: var(--font-primary);
+    padding: var(--padding-small);
+    border-radius: var(--border-radius-small);
+    font-family: var(--font);
+}
+
+.card-view-add-card-btn {
+    position: relative;
+    width: 100px;
+}
+
+.card-confirm-btn {
+    position: relative;
+    width: 100px;
+    margin-top: 25px;
+}
+
+.flashcard-nav-btn {
+    height: 100%;
     aspect-ratio: 1;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3px;
-    text-align: center;
-}
-
-.btn-input-container {
-    height: 40px;
-    padding: 5px;
-    padding-left: 0;
-    display: flex;
-    justify-content: flex-start;
-    gap: 15px;
-    width: auto;
-}
-
-.pack-name-input {
-    background-color: var(--bg-tertiary);
-    color: var(--font-primary);
-    border-radius: var(--border-radius-small);
-    border: 1px solid var(--border-primary);
-}
-
-.pack-list-add-btn {
-    height: 30px;
-    border-radius: var(--border-radius-small);
-    border: 1px solid var(--border-primary);
-    color: var(--font-primary);
-    background-color: var(--bg-tertiary);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
