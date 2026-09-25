@@ -260,7 +260,7 @@
     height: 100%;
     width: 100%;
     padding: 5px;
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 .sidebar-flashcards.flashcard-module::-webkit-scrollbar {
@@ -325,7 +325,45 @@
 /*in sidebar card view*/
 .sidebar-flashcards .card-view-card-container {
   flex-direction: column;
+  height: auto;
+  max-height: none;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin-top: 35px;
 }
+
+.sidebar-flashcards .flashcard-card-element {
+  width: 100%;
+}
+
+.sidebar-flashcards .card-view-add-card-btn {
+    position: absolute;
+    width: 50px;
+    top: 5px;
+    left: 5px;
+    z-index: 105;
+}
+
+.sidebar-flashcards .card-list-back-btn {
+    top: 5px;
+    left: 60px;
+    z-index: 105;
+}
+
+.sidebar-flashcards .card-list-study-btn {
+    top: 5px;
+    right: 25px;
+}
+
+.card-input {
+    height: 175px;
+    width: 50%;
+}
+
 /*
 .card-view-card-container {
     margin-top: 25px;

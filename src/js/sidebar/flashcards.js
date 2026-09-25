@@ -48,7 +48,10 @@ export function createFlashcardModule(existingState = null, isInSidebar = false)
     }
     const root = document.createElement('div');
     root.classList.add('flashcard-module');
-    if(isInSidebar) root.classList.add('sidebar-flashcards');
+    if(isInSidebar) {
+        root.classList.add('sidebar-flashcards');
+        root.isInSidebar = true;
+    }
     root.id = 'flashcard-root';
     render(root, state);
     return root;
@@ -169,7 +172,8 @@ function renderCardList(root, state) {
     });
 
     const addCardBtn = document.createElement('button');
-    addCardBtn.textContent = '+ Add Card';
+    if(root.isInSidebar) addCardBtn.textContent = '+';
+    else addCardBtn.textContent = '+ Add Card';
     addCardBtn.classList.add('card-view-add-card-btn', 'card-view-btn', 'responsive-btn');
     addCardBtn.addEventListener('click', () => promptNewCard(root, state, pack));
     root.append(addCardBtn, cardContainer, studyBtn);
