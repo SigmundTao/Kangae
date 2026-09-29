@@ -197,6 +197,13 @@ function deleteCard(cardFront, state, root) {
     render(root, state);
 }
 
+function createStudyViewContainerEl() {
+    const container = document.createElement('div');
+    container.classList.add('study-view-container-el');
+
+    return container;
+}
+
 function renderStudyView(root, state) {
     const pack = USER.settings.flashcards.packs[state.activePack];
 
@@ -214,6 +221,7 @@ function renderStudyView(root, state) {
 
     const flashcardBtnHolder = document.createElement('div');
     flashcardBtnHolder.classList.add('flashcard-btn-holder');
+    root.appendChild(flashcardBtnHolder);
 
     const backBtn = document.createElement('div');
     backBtn.classList.add('flashcard-nav-btn', 'responsive-btn');
