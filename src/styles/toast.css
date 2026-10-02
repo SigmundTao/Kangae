@@ -1,7 +1,7 @@
 @import url('./themes.css');
 
 .toast-el {
-    z-index: 99;
+    z-index: 500;
     height: 50px;
     width: 400px;
     border: 3px solid var(--border-tertiary);
@@ -16,3 +16,8 @@
     justify-content: center;
     align-items: center;
 }
+
+.toast-confirm {
+    height: 500px;
+}
+

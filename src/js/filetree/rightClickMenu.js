@@ -11,6 +11,7 @@ import { USER } from '../user.js';
 import { getFileIndex } from '../storage.js';
 import { createMethodMenu } from './methodMenu.js';
 import { exportSingleFile, exportFiles } from '../export.js';
+import { confirmDeletion } from '../toast.js';
 
 class MenuItem {
     constructor(obj){
@@ -62,17 +63,19 @@ const menuItems = {
             }
         }),
 
+       
         delete: new MenuItem({
             text: 'Delete',
             classes: ['rc-delete-btn'],
-            fn: (fileID) => {
-                const file = USER.files[getFileIndex(fileID)]
-                if(file.type === 'folder') {
-                    const folderContents = USER.files.filter((f) => f.parentId === fileID);
+            fn: async (fileID) => {
+                const file = USER.files[getFileIndex(fileID)];
+                const confirmed = await confirmDeletion(`Delete "${file.title}"?`);
+                if (!confirmed) return;
 
-                    folderContents.forEach((item) => {
-                        item.parentId = null;
-                    });
+                if (file.type === 'folder') {
+                    USER.files
+                        .filter((f) => f.parentId === fileID)
+                        .forEach((item) => { item.parentId = null; });
                 }
                 deleteFile(fileID);
             }
@@ -135,11 +138,18 @@ const menuItems = {
         deleteAll: new MenuItem({
             text: 'Delete All',
             classes: ['rc-delete-btn'],
-            fn: (fileID) => {
-                const folderContents = USER.files.filter((f) => f.parentId === fileID);
-                folderContents.forEach((file) => deleteFile(file.id));
-                deleteFile(fileID);
-            }
+            fn: async (fileID) => {
+                const file = user.files[getfileindex(fileid)];
+                const confirmed = await confirmdeletion(`delete "${file.title}"?`);
+                if (!confirmed) return;
+
+                if (file.type === 'folder') {
+                    user.files
+                        .filter((f) => f.parentid === fileid)
+                        .foreach((item) => { item.parentid = null; });
+                }
+                deletefile(fileID);
+    }
         }),
     },
 };

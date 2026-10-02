@@ -1,6 +1,7 @@
 export const USER = JSON.parse(localStorage.getItem('user')) || {
     files: [],
     recentlyDeleted: [],
+    doNotShowConfirmationAgain: false,
     tabs: [],
     todo: {
         lists: [{ name: 'todo', tasks: [] }],
