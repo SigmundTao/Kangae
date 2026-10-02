@@ -33,11 +33,16 @@ class Module {
             if (this.id === 'timer-module') destroySidebarPomodoroTimer();
             moduleEl.remove();
             removeOpenModule(this.title);
+            if(!openModules.length) {
+                displayEmptyState(sidebarContents)
+            }
         });
         deleteModuleBtn.textContent = 'x';
 
         moduleEl.appendChild(deleteModuleBtn);
         moduleEl.classList.add('in-sidebar');
+
+        removeEmptyStateModule()
         sidebarContents.appendChild(moduleEl);
     }
     createMenuItem() {
@@ -57,6 +62,28 @@ class Module {
         });
         return menuItem;
     }
+}
+
+export function displayEmptyState(parent) {
+    const moduleEl = createEmptyStateModule();
+    parent.append(moduleEl);
+}
+
+function createEmptyStateModule() {
+    const moduleEl = document.createElement('div');
+    moduleEl.classList.add('module', 'empty-state-module-el');
+
+    const text = document.createElement('p');
+    text.textContent = 'Press + to add your first tool';
+
+    moduleEl.append(text);
+    return moduleEl;
+}
+
+function removeEmptyStateModule() {
+    const moduleEl = document.querySelector('.empty-state-module-el');
+    console.log(moduleEl)
+    if(moduleEl) moduleEl.remove();
 }
 
 export const modules = [
@@ -111,4 +138,5 @@ function initAddModuleBtn() {
 export function initRightSidebar() {
     sidebarBtn.addEventListener('click', openAndCloseSidebar);
     initAddModuleBtn();
+    displayEmptyState(sidebarContents)
 }

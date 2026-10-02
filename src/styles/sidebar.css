@@ -134,3 +134,16 @@
 .in-sidebar {
     max-height: 30%;
 }
+
+.empty-state-module-el {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-state-module-el p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
