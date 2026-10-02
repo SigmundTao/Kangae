@@ -16,7 +16,6 @@ import { createNewNote, getBodyInput, getTitleInput } from './editor.js';
 import { currentTabId, currentNoteMode } from './state.js';
 import { USER } from './user.js';
 import { toggleCmdPalette } from './commandPalette.js';
-import { toggleCheatSheet } from './cheatsheet.js';
 import { closeOpenMenu, openMenu } from './menus.js';
 
 export const SUPER = 'Alt';
@@ -59,7 +58,6 @@ export const FUNCTION_MAP = {
     'Open flashcard tab': () => createTab(null, 'flashcards'),
     'Close current tab': () => deleteTab(currentTabId),
     'Open command palette': toggleCmdPalette,
-    'Open markdown cheat sheet': toggleCheatSheet,
 };
 
 export const KEY_BINDS = USER.settings.keybinds.map((bind) => ({

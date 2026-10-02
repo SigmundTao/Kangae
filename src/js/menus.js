@@ -2,7 +2,6 @@ import { closeSettingsMenu } from './settings/settings.js';
 import { createTabMenu } from './tabs/tabMenu.js';
 import { removeModuleMenu } from './sidebar/sidebar.js';
 import { closeCmdPalette } from './commandPalette.js';
-import { removeCheatSheet, getCheatSheet } from './cheatsheet.js';
 import { closeSearchMenu } from './search.js';
 import { closeMethodMenu } from './filetree/methodMenu.js';
 
@@ -14,7 +13,6 @@ const MENU_FUNCTIONS = {
     'module menu': removeModuleMenu,
     'command palette': closeCmdPalette,
     'quick capture': () => document.querySelector('.quick-capture')?.remove(),
-    'md cheatsheet': () => removeCheatSheet(getCheatSheet()),
     'search': closeSearchMenu,
     'method menu': closeMethodMenu,
 }
