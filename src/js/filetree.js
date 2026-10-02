@@ -207,8 +207,7 @@ function returnImgBasedOnFileType(fileType, lastOfFolder, fileId) {
 export function createFolder() {
     removeTempFile();
     const temporaryCard = document.createElement('div');
-    temporaryCard.classList.add('file-card');
-    temporaryCard.classList.add('temp');
+    temporaryCard.classList.add('file-card', 'temp');
     temporaryCard.innerHTML = `
         <div class="file-card-header temp-card">
             <img class="file-card-img" src="src/assets/folder-closed.svg">
@@ -218,14 +217,26 @@ export function createFolder() {
     fileTreeContainerEl.appendChild(temporaryCard);
     const input = document.querySelector('.temp-card-input');
     input.focus();
-    input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            if (input.value.trim() === '') return;
-            saveFolder();
-            removeTempFile();
-            renderFiletree();
+
+    let completed = false;
+    const finish = (save) => {
+        if(completed) return;
+        
+        completed = true;
+        const folderName = input.value.trim();
+
+        if(save && folderName) {
+            saveFolder(folderName)
+            renderFiletree()
         }
-    });
+
+        removeTempFile()
+    }
+    input.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter') finish(true);
+        else if(e.key === 'Escape') finish(false);
+    })
+    input.addEventListener('blur', () => finish(true));
 }
 
 function removeTempFile() {
@@ -233,8 +244,7 @@ function removeTempFile() {
     if (tempFile) tempFile.remove();
 }
 
-function saveFolder() {
-    const folderName = document.querySelector('.temp-card-input').value;
+function saveFolder(folderName) {
     const id = idNum;
     const date = getFormattedDate(new Date());
     USER.files.push({
