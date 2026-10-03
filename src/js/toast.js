@@ -56,6 +56,9 @@ function createConfirmationToast(message, onDone) {
         else USER.doNotShowConfirmationAgain = false;
     })
 
+    const btnHolder = document.createElement('div');
+    btnHolder.classList.add('confirm-toast-btn-holder');
+
     const cancelBtn = document.createElement('button');
     cancelBtn.textContent = 'Cancel';
     cancelBtn.addEventListener('click', () => onDone(false, false));
@@ -64,6 +67,7 @@ function createConfirmationToast(message, onDone) {
     deleteBtn.textContent = 'Delete';
     deleteBtn.addEventListener('click', () => onDone(true, checkbox.checked));
 
-    containerEl.append(title, label, cancelBtn, deleteBtn);
+    btnHolder.append(cancelBtn, deleteBtn);
+    containerEl.append(title, label, btnHolder);
     return containerEl;
 }

@@ -18,6 +18,36 @@
 }
 
 .toast-confirm {
-    height: 500px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    padding: 25px;
+    gap: 5px;
+    padding-top: 0;
 }
 
+.toast-confirm p{
+    margin-bottom: 10px;
+}
+.toast-confirm label {
+}
+
+.confirm-toast-btn-holder {
+    display: flex;
+    gap: 5px;
+    height: 50px;
+    width: 100%;
+}
+
+.confirm-toast-btn-holder button {
+    background-color: var(--bg-secondary);
+    color: var(--font-secondary);
+    border: 1px solid var(--border-secondary);
+}
+
+.confirm-toast-btn-holder button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
