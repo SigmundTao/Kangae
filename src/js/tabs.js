@@ -122,8 +122,8 @@ function resizeTextarea(textarea) {
     textarea.style.height = `${textarea.scrollHeight}px`;
 }
 
-export function createTab(fileId, moduleType = null) {
-    let tab = { file: fileId, id: tabId, moduleType};
+export function createTab(fileId, moduleType = null, isDefaultTab = false) {
+    let tab = { file: fileId, id: tabId, moduleType, isDefaultTab};
     if(moduleType) {
         if(moduleType === 'flashcards') {
             tab.state = createFlashcardState()
@@ -201,7 +201,7 @@ export function loadTab(id) {
         createModuleView(tab);
         setSelectedFileId(null);
         highlightSelectedFile();
-    } else if (tab.file === null) {
+    } else if (tab.isDefaultTab) {
         createDefaultView();
         setSelectedFileId(null);
         highlightSelectedFile();
@@ -235,7 +235,7 @@ export function createDefaultTab() {
         switchToTab(USER.tabs[USER.tabs.findIndex((t) => t.file === null)].id);
         return;
     }
-    createTab(null);
+    createTab(null, null, true);
 }
 
 export function switchToTab(id) {
@@ -365,11 +365,10 @@ export function openFile(fileId) {
 }
 
 export function checkForDefaultTabs() {
-    const tabsWithoutFile = USER.tabs.findIndex(t => t.file === null);
+    const defaultTab = USER.tabs.findIndex(t => t.isDefaultTab === true);
 
-    if(tabsWithoutFile.length){
-        const tabsThatArentTools = tabsWithoutFile.filter(tab => tab.moduleType === false);
-        return tabsThatArentTools;
+    if(defaultTab !== -1){
+        return 1;
     } else {
         return -1;
     }
@@ -555,9 +554,10 @@ function getCharacterCount(file) {
 }
 
 export function overwriteDefaultTab(fileId) {
-    const defaultTabIndex = getTabIndexFromFileId(null);
+    const defaultTabIndex = USER.tabs.findIndex(f => f.isDefaultTab === true);
 
     USER.tabs[defaultTabIndex].file = fileId;
+    USER.tabs[defaultTabIndex].isDefaultTab = false;
 
     updateUserData();
 }
