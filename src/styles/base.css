@@ -277,7 +277,7 @@ a {
 /* =====================
    Search Menu
    ===================== */
-#search-menu {
+.search-open {
     background-color: var(--bg-tertiary);
     height: 500px;
     width: 500px;

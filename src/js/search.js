@@ -21,6 +21,7 @@ export function initSearch() {
 }
 
 export function openSearchMenu() {
+    searchMenu.classList.add('search-open');
     searchBarEl.value = '';
     searchResultsEl.innerHTML = '';
     displaySearchResults(USER.files, searchResultsEl);
@@ -32,6 +33,7 @@ export function openSearchMenu() {
 
 export function closeSearchMenu() {
     searchMenu.close();
+    searchMenu.classList.remove('search-open');
     clearOpenMenu()
 }
 
