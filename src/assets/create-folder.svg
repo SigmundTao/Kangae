@@ -3,5 +3,5 @@
 <svg width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
 <g id="SVGRepo_bgCarrier" stroke-width="0"/>
 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="SVGRepo_iconCarrier"> <g stroke="#c9a84c" stroke-width="0.9600000000000002"> <path stroke-linejoin="round" d="M3 18V6a2 2 0 012-2h4.539a2 2 0 011.562.75L12.2 6.126a1 1 0 00.78.375H20a1 1 0 011 1V18a1 1 0 01-1 1H4a1 1 0 01-1-1z"/> <path stroke-linecap="round" d="M9.5 12.5h5"/> <path stroke-linecap="round" d="M12 15v-5"/> </g> </g>
+<g id="SVGRepo_iconCarrier"> <g stroke="currentColor" stroke-width="0.9600000000000002"> <path stroke-linejoin="round" d="M3 18V6a2 2 0 012-2h4.539a2 2 0 011.562.75L12.2 6.126a1 1 0 00.78.375H20a1 1 0 011 1V18a1 1 0 01-1 1H4a1 1 0 01-1-1z"/> <path stroke-linecap="round" d="M9.5 12.5h5"/> <path stroke-linecap="round" d="M12 15v-5"/> </g> </g>
 </svg>

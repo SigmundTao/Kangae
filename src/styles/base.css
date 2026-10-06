@@ -94,18 +94,6 @@ a {
     background-color: var(--hover-dark);
 }
 
-#open-files-btn {
-    background-image: url('../assets/kanji.svg');
-}
-
-#visualizer-btn {
-    background-image: url('../assets/visualizer.svg');
-}
-
-#daily-note-btn {
-   background-image: url('../assets/dailynote.svg'); 
-}
-
 /* =====================
    File Display
    ===================== */
@@ -474,7 +462,6 @@ a {
     bottom: 5px;
     right: 5px;
     border: 1px solid var(--border-primary);
-    border-radius: var(--border-radius-small);
     height: 25px;
     width: 200px;
     display: flex;

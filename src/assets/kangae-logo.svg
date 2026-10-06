@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="477" height="166" viewBox="0 0 477 166">
   <rect width="477" height="166" fill="none"/>
-  <g font-family="'Cascadia Mono', 'Cascadia Code', 'SF Mono', 'Menlo', 'Consolas', 'DejaVu Sans Mono', 'Lucida Console', 'Courier New', monospace" font-size="14" fill="#C8A96E">
+  <g font-family="'Cascadia Mono', 'Cascadia Code', 'SF Mono', 'Menlo', 'Consolas', 'DejaVu Sans Mono', 'Lucida Console', 'Courier New', monospace" font-size="14" fill="currentColor">
 <text x="24.0" y="40.8">█</text>
 <text x="32.4" y="40.8">█</text>
 <text x="40.8" y="40.8">╗</text>

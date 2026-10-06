@@ -16,18 +16,18 @@
     position: fixed;
     top: 5px;
     right: 5px;
-    background-image: url(../assets/toolbar.svg);
     transform: scaleX(-1);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     height: 30px;
+    width: 30px;
     aspect-ratio: 1;
     border: none;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    padding-bottom: 10px;
 }
 
 

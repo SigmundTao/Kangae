@@ -38,6 +38,7 @@ import {
 } from './sidebar/pomodoro.js';
 import { createToDoList } from './sidebar/todo.js';
 import { createTabMenu } from './tabs/tabMenu.js';
+import { createIcon } from './icons.js';
 
 const page = document.getElementById('page');
 export const currentTabEl = document.getElementById('current-tab');
@@ -524,21 +525,29 @@ function switchToEditMode(bodyInput, markdownDiv, charOverride = null) {
 }
 
 export function updateCountHolder(holder, file, mode) {
-    let imgClass;
+    const iconHolder = document.createElement('div');
+    iconHolder.classList.add('note-mode-img');
 
-    if (mode === 'display') imgClass = 'display-mode';
-    else imgClass = 'edit-mode';
+    let icon;
+    if (mode === 'display') icon = createIcon('view');
+    else icon = createIcon('pencil');
+
+    iconHolder.append(icon);
 
     const wordCount = getWordCount(file)
     const wordLabel = wordCount === 1 ? 'Word' : 'Words';
+    const wordCountHolder = document.createElement('div');
+    wordCountHolder.classList.add('word-count');
+    wordCountHolder.textContent = `${wordCount} ${wordLabel}`;
 
     const charCount = getCharacterCount(file);
     const charLabel = charCount === 1 ? 'Character' : 'Characters'
+    const charCountHolder = document.createElement('div');
+    charCountHolder.classList.add('char-count');
+    charCountHolder.textContent = `${charCount} ${charLabel}`;
 
-    holder.innerHTML = `
-        <div class="note-mode-img ${imgClass}" ></div>
-        <div class="word-count">${wordCount} ${wordLabel}</div>
-        <div class="char-count">${charCount} ${charLabel}</div>`;
+    holder.innerHTML = '';
+    holder.append(iconHolder, wordCountHolder, charCountHolder);
 }
 
 export function getCountHolder() {
