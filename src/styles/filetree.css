@@ -7,7 +7,6 @@
     width: 300px;
     transition: width 0.3s ease;
     z-index: 101;
-    border-right: 1px solid var(--border-primary);
 }
 
 #filetree.closed {
@@ -26,6 +25,7 @@
     align-items: center;
     gap: 5px;
     list-style: none;
+    background-color: var(--bg-tertiary);
 }
 
 .filetree-nav-item {
@@ -55,6 +55,7 @@
     height: calc(100vh - 40px);
     padding: 10px;
     overflow-y: auto;
+    border-top: 1px solid var(--border-primary);
 }
 
 .file-card {

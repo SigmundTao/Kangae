@@ -147,8 +147,6 @@ a {
     justify-content: space-between;
     padding: var(--padding-large);
     border: none;
-    border-top-right-radius: 3px;
-    border-top-left-radius: 3px;
     font-size: 0.8rem;
     overflow: hidden;
     position: relative;

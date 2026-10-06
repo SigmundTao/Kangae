@@ -2,13 +2,12 @@
 
 #right-sidebar {
     height: 100vh;
-    width: 400px;
+    width: 300px;
     transition: width 0.3s ease;
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-primary);
     display: flex;
     flex-direction: column;
     padding: 0;
-    border-left: 1px solid var(--border-primary);
     z-index: 101;
 }
 
@@ -46,8 +45,9 @@
     justify-content: start;
     align-items: center;
     padding: 5px;
-    height: 40px;
+    height: 42px;
     margin: 0;
+    background-color: var(--bg-tertiary);
 }
 
 .sidebar-nav-item {
@@ -72,6 +72,7 @@
     padding: 15px;
     gap: 15px;
     height: 100%;
+    border-top: 1px solid var(--border-primary);
 }
 
 /* module styling */
@@ -105,7 +106,6 @@
     aspect-ratio: 1;
     border: 1px solid black;
     padding: 5px;
-    border-radius: 5px;
 }
 
 .module-menu-item:hover {
@@ -116,11 +116,10 @@
 .module {
     width: 100%;
     flex: 1;
-    border-radius: 10px;
     position: relative;
     border: 1px solid grey;
     max-height: 33%;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-tertiary);
 }
 
 .delete-module-btn {
