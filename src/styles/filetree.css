@@ -42,12 +42,12 @@
 }
 
 #create-note-btn {
-    background-image: url('../assets/file.svg');
+    background-image: url('../assets/add-file.svg');
     background-size: contain;
 }
 
 #create-folder-btn {
-    background-image: url('../assets/create-folder.svg');
+    background-image: url('../assets/add-folder.svg');
     background-size: contain;
 }
 

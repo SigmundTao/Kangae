@@ -45,7 +45,7 @@ const DASHBOARD_SHORTCUTS = [
     new DashboardShortcut({
         name: 'New File',
         key: `${SUPER} + n`,
-        img: '/src/assets/file.svg',
+        img: '/src/assets/add-file.svg',
     }),
     new DashboardShortcut({
         name: 'Find File',
@@ -60,7 +60,7 @@ const DASHBOARD_SHORTCUTS = [
     new DashboardShortcut({
         name: 'Open Command Palette',
         key: `${SUPER} + k`,
-        img: '/src/assets/settings.svg',
+        img: '/src/assets/command.svg',
     }),
     new DashboardShortcut({
         name: 'Daily Note',
@@ -70,12 +70,12 @@ const DASHBOARD_SHORTCUTS = [
     new DashboardShortcut({
         name: 'Toggle Filetree',
         key: `${SUPER} + i`,
-        img: '/src/assets/ginkgo-tree.svg',
+        img: '/src/assets/filetree.svg',
     }),
     new DashboardShortcut({
         name: 'Toggle Toolbar',
         key: `${SUPER} + /`,
-        img: '/src/assets/sidebar.svg',
+        img: '/src/assets/toolbar.svg',
     }),
 ];
 

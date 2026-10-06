@@ -100,7 +100,7 @@ class FileCard {
         });
         this.addDragEventListner(card);
         const type = this.file.type;
-        const imgSrc = returnImgBasedOnFileType(type, this.lastOfFolder, this.id);
+        const imgSrc = returnImgBasedOnFileType(type, this.id);
         card.classList.add('file-card');
         const fileCardHeader = document.createElement('div');
         fileCardHeader.classList.add('file-card-header');
@@ -195,12 +195,11 @@ function isDescendant(draggedId, targetId) {
     return false;
 }
 
-function returnImgBasedOnFileType(fileType, lastOfFolder, fileId) {
-    if (lastOfFolder && fileType !== 'folder') return '/src/assets/filetree-el.svg';
-    else if (fileType === 'note') return 'src/assets/filetree-file.svg';
+function returnImgBasedOnFileType(fileType, fileId) {
+    if (fileType === 'note') return 'src/assets/file.svg';
     else if (fileType === 'folder') {
         if (openFolderIds.has(fileId)) return 'src/assets/folder-open.svg';
-        else return 'src/assets/folder-closed.svg';
+        else return 'src/assets/folder.svg';
     }
 }
 
