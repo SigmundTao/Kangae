@@ -75,6 +75,11 @@
   mask: var(--icon) no-repeat center / contain;
 }
 
+.icon-btn:hover {
+  background-color: grey;
+  cursor: pointer;
+}
+
 /* fonts */
 :root .Noto-Serif-JP {
     --font: 'Noto Serif JP', serif;
