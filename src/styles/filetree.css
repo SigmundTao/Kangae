@@ -144,31 +144,6 @@
     caret-color: var(--caret);
 }
 
-.right-click-menu {
-    background-color: var(--bg-tertiary);
-    border: 1px solid var(--border-primary);
-    border-radius: 4px;
-    padding: 4px;
-    min-width: 120px;
-    z-index: 300;
-    color: white;
-}
-
-.rc-menu-item {
-    padding: 6px 10px;
-    font-size: 13px;
-    border-radius: 2px;
-    cursor: pointer;
-}
-
-.rc-menu-item:hover {
-    background-color: var(--bg-secondary);
-}
-
-.rc-delete-btn {
-    color: #c0392b;
-}
-
 .selected-file {
     background-color: var(--bg-primary);
     color: var(--font-hover);
@@ -187,7 +162,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 300;
+    z-index: 500;
     background-color: var(--bg-secondary);
     border: 1px solid var(--border-primary);
     border-radius: var(--border-radius-large);

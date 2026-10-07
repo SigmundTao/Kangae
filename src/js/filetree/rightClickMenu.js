@@ -12,17 +12,28 @@ import { getFileIndex } from '../storage.js';
 import { createMethodMenu } from './methodMenu.js';
 import { exportSingleFile, exportFiles } from '../export.js';
 import { confirmDeletion } from '../toast.js';
+import { createIcon } from '../icons.js';
 
 class MenuItem {
     constructor(obj){
         this.fn = obj.fn;
         this.text = obj.text;
+        this.image = obj.image;
         this.classes = obj.classes;
     };
 
     createElement(fileID) {
         const btn = document.createElement('div');
         btn.classList.add('rc-menu-item');
+
+        const icon = document.createElement('div');
+        icon.classList.add('rc-menu-item-icon');
+
+        const iconContent = createIcon(this.image);
+        icon.append(iconContent);
+
+        const label = document.createElement('p');
+        label.classList.add('rc-menu-item-label');
         
         if(this.classes.length) {
             this.classes.forEach(c => {
@@ -30,12 +41,13 @@ class MenuItem {
             })
         }
 
-        let label = this.text;
-        if(label === 'Pin' && USER.files[getFileIndex(fileID)].pinned){
-            label = 'Unpin'
+        let labelText = this.text;
+        if(labelText === 'Pin' && USER.files[getFileIndex(fileID)].pinned){
+            labelText = 'Unpin'
         }
+        label.textContent = labelText;
 
-        btn.textContent = label;
+        btn.append(icon, label);
         return btn;
     }
 
@@ -49,6 +61,7 @@ const menuItems = {
         rename: new MenuItem({
             text: 'Rename',
             classes: ['rc-rename-btn'],
+            image: 'pencil',
             fn: (fileID, sourceEl) => {
                 const file = USER.files[getFileIndex(fileID)];
                 changeTitleToInput(sourceEl, file);
@@ -58,6 +71,7 @@ const menuItems = {
         moveTo: new MenuItem({
             text: 'Move To',
             classes: [],
+            image: 'folders',
             fn: (fileID) => {
                 createMethodMenu('move', fileID);
             }
@@ -67,6 +81,7 @@ const menuItems = {
         delete: new MenuItem({
             text: 'Delete',
             classes: ['rc-delete-btn'],
+            image: 'trash',
             fn: async (fileID) => {
                 const file = USER.files[getFileIndex(fileID)];
                 const confirmed = await confirmDeletion(`Delete "${file.title}"?`);
@@ -84,6 +99,7 @@ const menuItems = {
         exportFile: new MenuItem({
             text: 'Export',
             classes: [],
+            image: 'download',
             fn: (fileID) => {
                 const file = USER.files[getFileIndex(fileID)];
                 if(file.type === 'folder') {
@@ -96,8 +112,9 @@ const menuItems = {
     },
     noteOnly: {
         merge: new MenuItem({
-            text: 'Merge Into',
+            text: 'Merge into',
             classes: [],
+            image: 'merge',
             fn: (fileID) => {
                 createMethodMenu('merge', fileID);
             }
@@ -106,6 +123,7 @@ const menuItems = {
         duplicate: new MenuItem({
             text: 'Duplicate',
             classes: [],
+            image: 'duplicate',
             fn: (fileID) => {
                 duplicateFile(fileID);
             }
@@ -113,8 +131,9 @@ const menuItems = {
         }),
 
         pin: new MenuItem({
-            text: 'Pin',
+            text: 'Pin note',
             classes: ['rc-pin-btn'],
+            image: 'pin',
             fn: (fileID) => {
                 const file = USER.files[getFileIndex(fileID)];
                 if(file.pinned) {
@@ -128,16 +147,18 @@ const menuItems = {
     },
     folderOnly: {
         newNoteInFolder: new MenuItem({
-            text: 'New Note',
+            text: 'Create new note',
             classes: [],
+            image: 'add-file',
             fn: (fileID) => {
                 createFileInFolder(fileID)
             }
         }),
 
         deleteAll: new MenuItem({
-            text: 'Delete All',
+            text: 'Delete all',
             classes: ['rc-delete-btn'],
+            image: 'trash',
             fn: async (fileID) => {
                 const file = user.files[getfileindex(fileid)];
                 const confirmed = await confirmdeletion(`delete "${file.title}"?`);
@@ -161,7 +182,7 @@ export function getMenuBtns(file){
         if(USER.files.find(file => file.type === 'folder')) {
             buttons.push(menuItems.both.moveTo)
         }
-        if(USER.files.length < 1) {
+        if(USER.files.length > 1) {
             buttons.push(menuItems.noteOnly.merge)
         }
         buttons.push(menuItems.noteOnly.duplicate)
