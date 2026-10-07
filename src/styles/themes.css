@@ -1,7 +1,7 @@
 :root {
     --bg-primary: #F5F0E6;
     --bg-secondary: #ede8dc;
-    --bg-tertiary: #000000;
+    --bg-tertiary: #e3e3e3;
     --bg-four: #121212;
     --bg-image: url('https://wallpapercave.com/wp/wp15660269.jpg');
     --color-glass: rgba(217, 222, 210, 0.8);
@@ -15,7 +15,7 @@
     --font-tertiary: #9a9a98;
 
     --border: rgba(0, 0, 0, 0.1);
-    --border-primary: #6E6E6E;
+    --border-primary: #d7d7d7;
     --border-tertiary: #242424;
     --border-radius-small: 4px;
     --border-radius-medium: 6px;
