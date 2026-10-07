@@ -43,37 +43,37 @@ class DashboardShortcut {
 
 const DASHBOARD_SHORTCUTS = [
     new DashboardShortcut({
-        name: 'New File',
+        name: 'New note',
         key: `${SUPER} + n`,
         img: 'file',
     }),
     new DashboardShortcut({
-        name: 'Find File',
+        name: 'Find note',
         key: `${SUPER} + f`,
         img: 'search',
     }),
     new DashboardShortcut({
-        name: 'Config',
+        name: 'Settings',
         key: `${SUPER} + m`,
         img: 'settings',
     }),
     new DashboardShortcut({
-        name: 'Open Command Palette',
+        name: 'Command palette',
         key: `${SUPER} + k`,
         img: 'command',
     }),
     new DashboardShortcut({
-        name: 'Daily Note',
+        name: 'Daily note',
         key: `${SUPER} + d`,
         img: 'dailynote',
     }),
     new DashboardShortcut({
-        name: 'Toggle Filetree',
+        name: 'Open filetree',
         key: `${SUPER} + i`,
         img: 'filetree',
     }),
     new DashboardShortcut({
-        name: 'Toggle Toolbar',
+        name: 'Open toolbar',
         key: `${SUPER} + /`,
         img: 'toolbar',
     }),
