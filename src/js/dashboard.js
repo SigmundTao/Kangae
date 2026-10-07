@@ -3,6 +3,7 @@ import { currentTabEl } from './tabs.js';
 import { createNewNote } from './editor.js';
 import { openSearchMenu } from './search.js';
 import { SUPER } from './shortcuts.js';
+import { createIcon } from './icons.js';
 
 class DashboardShortcut {
     constructor(shortcutObj) {
@@ -20,10 +21,9 @@ class DashboardShortcut {
 
         const icon = document.createElement('div');
         icon.classList.add('dashboard-shortcut-icon');
-        icon.style.backgroundImage = `url(${this.img})`;
-        icon.style.backgroundPosition = 'center';
-        icon.style.backgroundSize = 'contain';
-        icon.style.backgroundRepeat = 'no-repeat';
+        const iconContent = createIcon(this.img)
+        icon.append(iconContent);
+        
         nameAndIconSpan.appendChild(icon);
         const name = document.createElement('p');
         name.classList.add('dashboard-shortcut-name');
@@ -45,37 +45,37 @@ const DASHBOARD_SHORTCUTS = [
     new DashboardShortcut({
         name: 'New File',
         key: `${SUPER} + n`,
-        img: '/src/assets/add-file.svg',
+        img: 'file',
     }),
     new DashboardShortcut({
         name: 'Find File',
         key: `${SUPER} + f`,
-        img: '/src/assets/search.svg',
+        img: 'search',
     }),
     new DashboardShortcut({
         name: 'Config',
         key: `${SUPER} + m`,
-        img: '/src/assets/settings.svg',
+        img: 'settings',
     }),
     new DashboardShortcut({
         name: 'Open Command Palette',
         key: `${SUPER} + k`,
-        img: '/src/assets/command.svg',
+        img: 'command',
     }),
     new DashboardShortcut({
         name: 'Daily Note',
         key: `${SUPER} + d`,
-        img: '/src/assets/dailynote.svg',
+        img: 'dailynote',
     }),
     new DashboardShortcut({
         name: 'Toggle Filetree',
         key: `${SUPER} + i`,
-        img: '/src/assets/filetree.svg',
+        img: 'filetree',
     }),
     new DashboardShortcut({
         name: 'Toggle Toolbar',
         key: `${SUPER} + /`,
-        img: '/src/assets/toolbar.svg',
+        img: 'toolbar',
     }),
 ];
 
