@@ -85,39 +85,13 @@ export function saveBody(file) {
 
 function indicateAutoSave() {
     const saveElement = document.createElement('div');
-    saveElement.classList.add('auto-save-indicator');
-    const saveText = document.createElement('p');
-    saveText.textContent = 'Saving...';
-    const icon = document.createElement('div');
-    icon.classList.add('save-icon');
-    icon.style.backgroundImage = `url('src/assets/save-icon.svg')`;
-    saveElement.appendChild(icon);
-    saveElement.appendChild(saveText);
-    currentTabEl.appendChild(saveElement);
+    saveElement.classList.add('save-hanko');
 
-    let rotation = 0;
-    const rotating = setInterval(() => {
-        rotation = rotateElement(icon, rotation);
-    }, 100); // rotation interval
+    currentTabEl.append(saveElement);
 
     setTimeout(() => {
-        clearInterval(rotating);
-        icon.style.rotate = '0deg';
-        saveText.textContent = 'Saved';
-        icon.style.backgroundImage = `url('src/assets/saved.svg')`;
-
-        setTimeout(() => {
-            const removingText = setInterval(() => {
-                saveText.textContent = removeTextRightToLeft(saveText.textContent);
-                if (saveText.textContent === '') {
-                    clearInterval(removingText);
-                    setTimeout(() => {
-                        saveElement.remove();
-                    }, 500); // End of animation, remove element
-                }
-            }, 35); // text removal speed
-        }, 200); // pause before removing text
-    }, 800); // hold on "Saved"
+        saveElement.remove();
+    }, 1500)
 }
 
 export function createNewNote(isDailyNote = false, parentIdentifier = null) {

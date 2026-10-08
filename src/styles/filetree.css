@@ -61,7 +61,7 @@
 
 .file-card:hover {
     background-color: var(--secondary-hover);
-    color: var(--font-hover);
+    color: var(--accent);
 }
 
 .file-card.folder {
@@ -138,7 +138,7 @@
 
 .selected-file {
     background-color: var(--bg-primary);
-    color: var(--font-hover);
+    color: var(--accent);
 }
 
 #pinned {
