@@ -44,6 +44,10 @@
     aspect-ratio: 1;
 }
 
+.dashboard-shortcut-icon .icon {
+    background-color: var(--accent);
+}
+
 .dashboard-key {
     text-align: left;
     width: 60px;
