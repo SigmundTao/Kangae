@@ -225,6 +225,10 @@ function returnImgBasedOnFileType(fileType, fileId) {
 
 export function createFolder() {
     removeTempFile();
+    if(USER.files.length === 0) {
+        fileTreeContainerEl.innerHTML = '';
+    }
+
     const temporaryCard = document.createElement('div');
     temporaryCard.classList.add('file-card', 'temp');
     temporaryCard.innerHTML = `
@@ -246,10 +250,10 @@ export function createFolder() {
 
         if(save && folderName) {
             saveFolder(folderName)
-            renderFiletree()
         }
 
         removeTempFile()
+        renderFiletree()
     }
     input.addEventListener('keydown', (e) => {
         if(e.key === 'Enter') finish(true);
@@ -354,8 +358,10 @@ function getDuplicateTitle(ID, title, attempt=2) {
 
 export function deleteFile(id) {
     const file = USER.files[getFileIndex(id)];
-    if (file.pinned) {
-        unpinFile(file);
+    if(file.type !== 'folder'){
+        if (file.pinned) {
+            unpinFile(file);
+        }
     }
     file.dateOfDeletion = new Date();
     USER.recentlyDeleted.push(file);

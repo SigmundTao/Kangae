@@ -165,24 +165,41 @@ const menuItems = {
                 if (!confirmed) return;
                 
                 function deleteFolderChildren(parentFolderID) {
-                    const folderChildren = USER.files.filter(f => f.parentId === parentFolderID)
+                    const folderChildren = USER.files.filter(f => f.parentId === parentFolderID);
 
-                    folderChildren.forEach(childFile => () => {
+                    folderChildren.forEach(childFile => {
                         if(childFile.type === 'folder') {
                             deleteFolderChildren(childFile.id)
-                            deleteFile(childFile.id)
                         } else {
                             deleteFile(childFile.id)
                         }
                     })
+
+                    deleteFile(parentFolderID);
                 }
-                
+
                 deleteFolderChildren(fileID);
-                deleteFile(fileID);
-    }
+            }
         }),
     },
 };
+
+function deleteFolderChildren(parentFolderID) {
+    const folderChildren = USER.files.filter(f => f.parentId === parentFolderID);
+    console.log('folder children: ', folderChildren);
+
+    folderChildren.forEach(childFile => {
+        console.log('stuff is happening')
+        if(childFile.type === 'folder') {
+            deleteFolderChildren(childFile.id)
+            deleteFile(childFile.id)
+        } else {
+            deleteFile(childFile.id)
+        }
+    })
+
+    deleteFile(parentFolderID);
+}
 
 export function getMenuBtns(file){
     const buttons = [];
