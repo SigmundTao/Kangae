@@ -14,14 +14,14 @@
 #right-sidebar-btn {
     z-index: 202;
     position: fixed;
-    top: 5px;
-    right: 5px;
+    top: 9px;
+    right: 6px;
     transform: scaleX(-1);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
     aspect-ratio: 1;
     border: none;
     display: flex;
@@ -40,7 +40,7 @@
     justify-content: start;
     align-items: center;
     padding: 5px;
-    height: 42px;
+    height: 37px;
     margin: 0;
     background-color: var(--bg-tertiary);
 }
@@ -68,6 +68,7 @@
     gap: 15px;
     height: 100%;
     border-top: 1px solid var(--border-primary);
+    z-index: 202;
 }
 
 #right-sidebar.closed-sidebar {

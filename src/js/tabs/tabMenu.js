@@ -2,6 +2,7 @@ import { createTab } from '../tabs.js';
 import { createNewNote } from '../editor.js';
 import { setOpenMenu } from '../menus.js';
 import { createState as createFlashcardState } from '../sidebar/flashcards.js';
+import { createIcon } from '../icons.js';
 
 class MenuItem {
     constructor(obj) {
@@ -20,13 +21,10 @@ class MenuItem {
 
         const img = document.createElement('div');
         img.classList.add('tab-menu-img');
-        img.style.backgroundImage = `url(${this.img})`;
-        img.style.backgroundSize = 'contain';
-        img.style.backgroundRepeat = 'no-repeat';
-        img.style.backgroundPosition = 'center';
+        const imgContent = createIcon(this.img);
+        img.append(imgContent);
 
-        menuItemEl.appendChild(title);
-        menuItemEl.appendChild(img);
+        menuItemEl.append(img, title);
         return menuItemEl;
     }
 }
@@ -36,15 +34,15 @@ const menuItems = [
         id: 'pomodoro',
         title: 'Pomodoro',
         type: 'pomodoro',
-        img: 'src/assets/timer.svg',
+        img: 'timer',
     }),
     new MenuItem({
         id: 'flashcards',
         title: 'Flashcards',
         type: 'flashcards',
-        img: 'src/assets/flashcards.svg',
+        img: 'flashcards',
     }),
-    new MenuItem({ id: 'todo', title: 'Todo', type: 'todo', img: 'src/assets/todo.svg' }),
+    new MenuItem({ id: 'todo', title: 'Todo', type: 'todo', img: 'todo' }),
 ];
 
 export function createTabMenu(posX, posY) {
@@ -54,10 +52,17 @@ export function createTabMenu(posX, posY) {
 
     const createNewFile = document.createElement('div');
     createNewFile.classList.add('tab-menu-item');
-    createNewFile.innerHTML = `
-    <p>New Note</p>
-    <img src="src/assets/file.svg" class="tab-menu-img">
-  `;
+
+    const noteIcon = document.createElement('div');
+    noteIcon.classList.add('tab-menu-img');
+    const iconContent = createIcon('file');
+    noteIcon.append(iconContent);
+
+    const text = document.createElement('p');
+    text.textContent = 'New note';
+
+    createNewFile.append(noteIcon, text);
+
     createNewFile.onclick = () => {
         createNewNote(false);
         menuEl.remove();

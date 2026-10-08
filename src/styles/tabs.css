@@ -1,26 +1,27 @@
 @import url('./themes.css');
 
 .tab-menu {
-    border: 3px solid var(--border-tertiary);
-    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    background-color: var(--bg-secondary);
     z-index: 200;
-    border-radius: var(--border-radius-medium);
-    color: var(--font-tertiary);
-    padding: var(--padding-medium)
+    color: var(--font-primary);
+    padding: 5px;
 }
 
 .tab-menu-item {
     width: 200px;
-    height: 40px;
+    height: 25px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: var(--padding-small);
+    gap: 5px;
+    font-size: 1rem;
+    font-size: 13px;
 }
 
 .tab-menu-item:hover {
     cursor: pointer;
-    background-color: var(--hover-dark);
+    background-color: var(--bg-primary);
 }
 
 .tab-menu-img {

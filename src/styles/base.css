@@ -71,7 +71,7 @@ a {
    ===================== */
 #nav-bar {
     height: 100vh;
-    min-width: 40px;
+    min-width: 37px;
     margin: 0;
     padding: var(--padding-small);
     background-color: var(--bg-tertiary);
@@ -79,11 +79,12 @@ a {
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--border-primary);
+    align-items: center;
     gap: 7px;
 }
 
 .nav-item {
-    width: 100%;
+    width: 20px;
     aspect-ratio: 1;
     background-size: contain;
     background-position: center;
@@ -93,6 +94,10 @@ a {
 .nav-item:hover {
     cursor: pointer;
     background-color: var(--hover-dark);
+}
+
+#open-files-btn {
+    width: 100%;
 }
 
 /* =====================
@@ -107,7 +112,7 @@ a {
 }
 
 #tab-bar {
-    height: 42px;
+    height: 37px;
     width: 100%;
     max-width: 100%;
     padding: 0;
@@ -135,7 +140,8 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: var(--padding-large);
-    border: none;
+    border: 1px solid var(--border-tertiary);
+    border-bottom: none;
     font-size: 0.8rem;
     overflow: hidden;
     position: relative;
@@ -470,6 +476,7 @@ a {
     background-color: var(--bg-secondary);
     font-size: 0.75rem;
     color: var(--font-tertiary);
+    z-index: 403;
 }
 
 .note-mode-img {
@@ -478,14 +485,6 @@ a {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-}
-
-.note-mode-img.display-mode {
-    background-image: url('../assets/view.svg');
-}
-
-.note-mode-img.edit-mode {
-    background-image: url('../assets/pencil.svg');
 }
 
 /* =====================
