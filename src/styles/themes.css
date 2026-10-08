@@ -1,8 +1,8 @@
 :root {
     --bg-primary: #F5F0E6;
     --bg-secondary: #ede8dc;
-    --bg-tertiary: #e3e3e3;
-    --bg-four: #121212;
+    --bg-tertiary: #E3E3DE;
+    --bg-four: #E3E3E3;
     --bg-image: url('https://wallpapercave.com/wp/wp15660269.jpg');
     --color-glass: rgba(217, 222, 210, 0.8);
 
@@ -10,7 +10,7 @@
 
     --font: 'Noto Serif JP', serif;
     --font-primary: #1c1a17;
-    --font-secondary: #4a4a48;
+    --font-secondary: #2E2E2E;
     --font-hover: #8c6a4e;
     --font-tertiary: #9a9a98;
 
@@ -31,7 +31,7 @@
 
     --cedar-hover: #f0e6d0;
     --primary-active: #cfc9ba;
-    --icon-color: #000000;
+    --icon-color: #AB963F;
 }
 
 :root .dark {

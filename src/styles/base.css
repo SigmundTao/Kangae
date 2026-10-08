@@ -158,11 +158,10 @@ a {
 
 .current-tab {
     background-color: var(--bg-primary);
-    color: white;
+    color: var(--font-primary);
     height: calc(65% + 6px);
     z-index: 2;
     position: relative;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     border: none;
     border-top: 1px solid var(--border-primary);
     border-left: 1px solid var(--border-primary);

@@ -12,7 +12,6 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border-radius: var(--border-radius-large);
 }
 
 #settings-btn {
@@ -23,10 +22,9 @@
 
 .settings-select,
 .settings-input {
-    background-color: var(--bg-four);
+    background-color: var(--bg-secondary);
     border: 1px solid var(--border-secondary);
     width: 150px;
-    border-radius: var(--border-radius-small);
     color: var(--font-primary);
     height: 30px;
     padding: 5px;
@@ -37,9 +35,8 @@
     color: var(--font-primary);
     width: auto;
     padding: 5px;
-    border-radius: var(--border-radius-small);
     border: 1px solid var(--border-secondary);
-    background-color: var(--bg-four);
+    background-color: var(--bg-secondary);
 }
 
 .settings-btn:hover,
@@ -52,7 +49,6 @@
     background-color: var(--bg-primary);
     border: 1px solid var(--border-secondary);
     color: var(--font-primary);
-    border-radius: var(--border-radius-small);
 }
 
 #close-settings-btn {
@@ -88,8 +84,6 @@
     flex-direction: column;
     gap: 10px;
     border-right: 1px solid var(--border-secondary);
-    border-top-left-radius: var(--border-radius-large);
-    border-bottom-left-radius: var(--border-radius-large);
 }
 
 .settings-nav-item {
@@ -118,7 +112,7 @@
 .daily-preset-input {
     width: 100%;
     height: 500px;
-    background-color: var(--bg-four);
+    background-color: var(--bg-secondary);
     border: 1px solid var(--border-secondary);
     border-radius: var(--border-radius-medium);
     padding: 25px;
