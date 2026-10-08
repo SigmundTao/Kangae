@@ -33,14 +33,6 @@
     aspect-ratio: 1;
 }
 
-.filetree-nav-item:hover {
-    background-color: gray;
-}
-
-.filetree-nav-item:hover {
-    cursor: pointer;
-}
-
 #create-note-btn {
     background-image: url('../assets/add-file.svg');
     background-size: contain;
