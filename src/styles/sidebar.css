@@ -118,9 +118,9 @@
     width: 100%;
     flex: 1;
     position: relative;
-    border: 1px solid grey;
+    border: 1px solid var(--border-primary);
     max-height: 33%;
-    background-color: var(--bg-tertiary);
+    background-color: var(--bg-secondary);
 }
 
 .delete-module-btn {

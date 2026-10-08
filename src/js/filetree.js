@@ -50,6 +50,9 @@ export function renderFiletree() {
     });
     renderPinnedFiles()
     highlightSelectedFile(selectedFileId);
+    if(USER.files.length === 0) {
+        fileTreeContainerEl.append(createEmptyStateForFiletree())
+    }
 }
 
 function renderFolder(folder, depth = 0, container, lastOfFolder) {
@@ -76,6 +79,23 @@ function renderFolder(folder, depth = 0, container, lastOfFolder) {
             container.appendChild(card);
         }
     });
+}
+
+function createEmptyStateForFiletree() {
+    const container = document.createElement('div');
+    container.classList.add('filetree-empty-state-container');
+
+    const kanji = document.createElement('p');
+    kanji.textContent = '空';
+    kanji.classList.add('filetree-empty-state-kanji');
+
+    const text = document.createElement('p');
+    text.textContent = 'Press Alt + n to create your first note';
+    text.classList.add('filetree-empty-state-text');
+
+    container.append(kanji, text);
+
+    return container;
 }
 
 function renderFile(file, lastOfFolder) {
