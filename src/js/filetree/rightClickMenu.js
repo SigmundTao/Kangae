@@ -160,16 +160,25 @@ const menuItems = {
             classes: ['rc-delete-btn'],
             image: 'trash',
             fn: async (fileID) => {
-                const file = user.files[getfileindex(fileid)];
-                const confirmed = await confirmdeletion(`delete "${file.title}"?`);
+                const file = USER.files[getFileIndex(fileID)];
+                const confirmed = await confirmDeletion(`delete "${file.title}"?`);
                 if (!confirmed) return;
+                
+                function deleteFolderChildren(parentFolderID) {
+                    const folderChildren = USER.files.filter(f => f.parentId === parentFolderID)
 
-                if (file.type === 'folder') {
-                    user.files
-                        .filter((f) => f.parentid === fileid)
-                        .foreach((item) => { item.parentid = null; });
+                    folderChildren.forEach(childFile => () => {
+                        if(childFile.type === 'folder') {
+                            deleteFolderChildren(childFile.id)
+                            deleteFile(childFile.id)
+                        } else {
+                            deleteFile(childFile.id)
+                        }
+                    })
                 }
-                deletefile(fileID);
+                
+                deleteFolderChildren(fileID);
+                deleteFile(fileID);
     }
         }),
     },
