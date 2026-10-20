@@ -37,9 +37,10 @@
     list-style: none;
     gap: 5px;
     width: 100%;
-    justify-content: start;
+    justify-content: end;
     align-items: center;
     padding: 5px;
+    padding-right: 35px;
     height: 37px;
     margin: 0;
     background-color: var(--bg-tertiary);
@@ -78,17 +79,9 @@
 }
 /* module styling */
 
-.add-module-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--bg-secondary);
-    min-height: 150px;
-    color: var(--font-secondary);
-}
-
-.add-module-btn:hover {
-    cursor: pointer;
+#add-module-btn {
+    height: 20px;
+    aspect-ratio: 1;
 }
 
 .module-menu {
@@ -140,6 +133,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.empty-state-module-el:hover {
+    cursor: pointer;
+    border-color: var(--accent);
 }
 
 .empty-state-module-el p{

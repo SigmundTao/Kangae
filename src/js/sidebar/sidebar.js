@@ -74,7 +74,12 @@ function createEmptyStateModule() {
     moduleEl.classList.add('module', 'empty-state-module-el');
 
     const text = document.createElement('p');
-    text.textContent = 'Press + to add your first tool';
+    text.textContent = 'Press to add first tool';
+
+    moduleEl.addEventListener('click', () => {
+        const rectInfo = moduleEl.getBoundingClientRect()
+        createModuleMenu(rectInfo.x, rectInfo.y)
+    })
 
     moduleEl.append(text);
     return moduleEl;
