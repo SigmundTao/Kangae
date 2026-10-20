@@ -137,7 +137,12 @@ export function removeModuleMenu() {
 }
 
 function initAddModuleBtn() {
-    addModuleBtn.addEventListener('click', (e) => createModuleMenu(e.clientX, e.clientY));
+    addModuleBtn.addEventListener('click', (e) => {
+        let x = e.clientX - 110;
+        let y = e.clientY + 10;
+
+        createModuleMenu(x, y);
+    });
 }
 
 export function initRightSidebar() {
