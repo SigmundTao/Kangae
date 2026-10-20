@@ -1,22 +1,22 @@
 :root {
     --bg-primary: #F5F0E6;
-    --bg-secondary: #ede8dc;
-    --bg-tertiary: #E3E3DE;
-    --bg-four: #E3E3E3;
+    --bg-secondary: #EAE3D3;
+    --bg-tertiary: #E0D8C6;
+    --bg-four: #D9D0BC;
     --bg-image: url('https://wallpapercave.com/wp/wp15660269.jpg');
-    --color-glass: rgba(217, 222, 210, 0.8);
+    --color-glass: rgba(245, 240, 230, 0.85);
 
-    --accent: #C8402B;
+    --accent: #AB963F;
 
     --font: 'Noto Serif JP', serif;
     --font-primary: #1c1a17;
-    --font-secondary: #2E2E2E;
-    --font-hover: #8c6a4e;
-    --font-tertiary: #9a9a98;
+    --font-secondary: #3A352D;
+    --font-tertiary: #6B665C;
+    --font-hover: #7A6620;
 
-    --border: rgba(0, 0, 0, 0.1);
-    --border-primary: #d7d7d7;
-    --border-tertiary: #242424;
+    --border: rgba(60, 50, 30, 0.18);
+    --border-primary: #CFC6B0;
+    --border-tertiary: #2a2620;
     --border-radius-small: 4px;
     --border-radius-medium: 6px;
     --border-radius-large: 10px;
@@ -29,29 +29,32 @@
 
     --hover-dark: #101010;
 
-    --cedar-hover: #f0e6d0;
-    --primary-active: #cfc9ba;
-    --icon-color: #AB963F;
+    --cedar-hover: #F0E4C4;
+    --primary-active: #E2D5A3;
+
+    --icon-color: #5C5548;
+    --icon-hover: var(--accent);
 }
 
 :root .dark {
-    --bg-primary: #292929;
-    --bg-secondary: #1C1C1C;
-    --bg-tertiary: #101010;
-    --bg-four: #121212;
+    --bg-primary: #1D232E;
+    --bg-secondary: #151A22;
+    --bg-tertiary: #0E1117;
+    --bg-four: #121720;
+    --color-glass: rgba(29, 35, 46, 0.85);
 
     --accent: #C8402B;
 
     --font: 'Noto Serif JP', serif;
-    --font-primary: #CFCFCF;
-    --font-secondary: #BABABA;
-    --font-hover: #8c6a4e;
-    --font-tertiary: #9a9a98;
+    --font-primary: #E8E2D4;
+    --font-secondary: #C5C2BA;
+    --font-tertiary: #8E93A0;
+    --font-hover: #E8634D;
 
-    --border: rgba(0, 0, 0, 0.1);
-    --border-primary: #454545;
-    --border-secondary: #454545;
-    --border-tertiary: #242424;
+    --border: rgba(200, 210, 230, 0.10);
+    --border-primary: #2C3442;
+    --border-secondary: #2C3442;
+    --border-tertiary: #161B24;
     --border-radius-small: 4px;
     --border-radius-medium: 6px;
     --border-radius-large: 10px;
@@ -60,11 +63,13 @@
     --padding-medium: 8px;
     --padding-large: 12px;
 
-    --hover-dark: #101010;
-    --primary-active: #cfc9ba;
-    --icon-color: #5a5a5a;
-}
+    --hover-dark: #0A0D12;
+    --cedar-hover: #262D3A;
+    --primary-active: #3E4A61;
 
+    --icon-color: #7C8596;
+    --icon-hover: var(--accent);
+}
 
 .icon {
   display: inline-block;
