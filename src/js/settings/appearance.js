@@ -4,7 +4,7 @@ import { createThemeSelect } from './appearance/theme.js';
 import { loadTab } from '../tabs.js';
 import { currentTabId } from '../state.js';
 
-const defaultURL = './src/assets/kangae-logo.svg';
+const defaultURL = './src/assets/dashboard-logo.png';
 
 export function createAppearanceMenu() {
     const containerEl = document.createElement('div');
