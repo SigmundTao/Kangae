@@ -10,14 +10,6 @@ export function checkForDuplicateTitles(title, id) {
 }
 
 export function getFormattedDate(dateObj) {
-    return formatDateJP(dateObj);
-}
-
-function formatDateJP(date) {
-  return date.toLocaleDateString('ja-JP', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
+    return `${dateObj.getDate()}-${dateObj.getMonth() + 1}-${dateObj.getFullYear()}`;
 }
 
